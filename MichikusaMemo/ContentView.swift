@@ -1,21 +1,28 @@
-//
-//  ContentView.swift
-//  MichikusaMemo
-//
-//  Created by kota on 2025/02/04.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isSettingScreen: Bool = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            MemoScreen()
+                .opacity(isSettingScreen ? 1 : 0.7)
+                .animation(.easeInOut, value: isSettingScreen)
+
+            MapScreen()
+                .opacity(isSettingScreen ? 0.7 : 0.7)
+                .animation(.easeInOut, value: isSettingScreen)
+
+            VStack {
+                HStack {
+                    Spacer()
+                    CustomToggle(isOn: $isSettingScreen)
+                        .frame(width: 120, height: 50)
+                        .padding()
+                }
+                Spacer()
+            }
         }
-        .padding()
     }
 }
 
