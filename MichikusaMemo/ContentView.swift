@@ -5,13 +5,27 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            MemoScreen()
-                .opacity(isSettingScreen ? 1 : 0.7)
-                .animation(.easeInOut, value: isSettingScreen)
+            if isSettingScreen {
+                MemoScreen()
+                    .opacity(1)
+                    .allowsHitTesting(false)
+                    .animation(.easeInOut, value: isSettingScreen)
 
-            MapScreen()
-                .opacity(isSettingScreen ? 0.7 : 0.7)
-                .animation(.easeInOut, value: isSettingScreen)
+                MapScreen()
+                    .opacity(0.7)
+                    .allowsHitTesting(true)
+                    .animation(.easeInOut, value: isSettingScreen)
+            } else {
+                MapScreen()
+                    .opacity(0.7)
+                    .allowsHitTesting(false)
+                    .animation(.easeInOut, value: isSettingScreen)
+
+                MemoScreen()
+                    .opacity(0.7)
+                    .allowsHitTesting(true)
+                    .animation(.easeInOut, value: isSettingScreen)
+            }
 
             VStack {
                 HStack {

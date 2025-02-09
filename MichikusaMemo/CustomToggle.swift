@@ -6,7 +6,7 @@ struct CustomToggle: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
-                .fill(Color.white.opacity(0))
+                .fill(Color(hex:"#B7CCB8").opacity(1))
                 .shadow(radius: 2)
 
             RoundedRectangle(cornerRadius: 25)
@@ -22,12 +22,12 @@ struct CustomToggle: View {
             }
 
             HStack {
-                Image(systemName: "map")
+                Image(systemName: "doc.text")
                     .foregroundColor(Color(hex: "EEF2EA"))
                     .font(.system(size: 24))
                     .opacity(isOn ? 0.5 : 1)
                 Spacer()
-                Image(systemName: "doc.text")
+                Image(systemName: "map")
                     .foregroundColor(Color(hex: "EEF2EA"))
                     .font(.system(size: 24))
                     .opacity(isOn ? 1 : 0.5)
