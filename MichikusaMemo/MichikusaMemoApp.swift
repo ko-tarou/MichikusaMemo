@@ -2,6 +2,14 @@
 //  MichikusaMemoApp.swift
 //  MichikusaMemo
 //
+//  Created by kota on 2025/02/09.
+//
+
+
+//
+//  MichikusaMemoApp.swift
+//  MichikusaMemo
+//
 //  Created by kota on 2025/02/04.
 //
 

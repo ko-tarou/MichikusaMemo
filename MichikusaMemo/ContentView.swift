@@ -1,42 +1,16 @@
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
-    @State private var isSettingScreen: Bool = false
-
+    
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 35.6812, longitude: 139.7671),
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    )
+    
     var body: some View {
-        ZStack {
-            if isSettingScreen {
-                MemoScreen()
-                    .opacity(1)
-                    .allowsHitTesting(false)
-                    .animation(.easeInOut, value: isSettingScreen)
-
-                MapScreen()
-                    .opacity(0.7)
-                    .allowsHitTesting(true)
-                    .animation(.easeInOut, value: isSettingScreen)
-            } else {
-                MapScreen()
-                    .opacity(0.7)
-                    .allowsHitTesting(false)
-                    .animation(.easeInOut, value: isSettingScreen)
-
-                MemoScreen()
-                    .opacity(0.7)
-                    .allowsHitTesting(true)
-                    .animation(.easeInOut, value: isSettingScreen)
-            }
-
-            VStack {
-                HStack {
-                    Spacer()
-                    CustomToggle(isOn: $isSettingScreen)
-                        .frame(width: 120, height: 50)
-                        .padding()
-                }
-                Spacer()
-            }
-        }
+        Map(coordinateRegion: $region)
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
