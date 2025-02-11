@@ -8,7 +8,7 @@ struct ContentView: View {
     )
     
     @State private var pins: [Pin] = []
-    @State private var showTextField = false
+    @State private var showAlert = false
     @State private var newPinTitle = ""
     @State private var newPinCoordinate: CLLocationCoordinate2D?
 
@@ -16,29 +16,24 @@ struct ContentView: View {
         ZStack {
             MapView(region: $region, pins: $pins, onAddPin: { coordinate in
                 self.newPinCoordinate = coordinate
-                self.showTextField = true
+                self.newPinTitle = "" // 初期化
+                self.showAlert = true
             })
             .edgesIgnoringSafeArea(.all)
         }
         .onAppear {
             loadPins()
         }
-        .sheet(isPresented: $showTextField) {
-            VStack {
-                TextField("ピンのタイトルを入力", text: $newPinTitle)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                Button("追加") {
-                    if let coordinate = newPinCoordinate {
-                        let newPin = Pin(coordinate: coordinate, title: newPinTitle)
-                        pins.append(newPin)
-                        savePins()
-                        newPinTitle = ""
-                    }
-                    showTextField = false
+        .alert("ピンのタイトルを入力", isPresented: $showAlert) {
+            TextField("タイトル", text: $newPinTitle)
+            Button("キャンセル", role: .cancel) { }
+            Button("追加") {
+                if let coordinate = newPinCoordinate {
+                    let newPin = Pin(coordinate: coordinate, title: newPinTitle)
+                    pins.append(newPin)
+                    savePins()
                 }
             }
-            .padding()
         }
     }
     
@@ -107,7 +102,7 @@ struct MapView: UIViewRepresentable {
 }
 
 struct Pin: Identifiable, Codable {
-    let id = UUID()
+    let id: UUID // `UUID` を直接保存・復元できるようにする
     let latitude: Double
     let longitude: Double
     let title: String
@@ -117,11 +112,16 @@ struct Pin: Identifiable, Codable {
     }
 }
 
+// イニシャライザを追加（新しいピンを作成するとき用）
 extension Pin {
     init(coordinate: CLLocationCoordinate2D, title: String) {
+        self.id = UUID() // ここで新しい ID を生成
         self.latitude = coordinate.latitude
         self.longitude = coordinate.longitude
         self.title = title
     }
 }
 
+#Preview {
+    ContentView()
+}

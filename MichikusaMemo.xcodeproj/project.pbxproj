@@ -426,6 +426,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MichikusaMemo/Preview Content\"";
+				DEVELOPMENT_TEAM = CHP337D75C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "このアプリは現在地を表示するために位置情報を使用します。\nこのアプリは現在地を表示するために位置情報を使用します。\nこのアプリは現在地を表示するために位置情報を使用します。\n\"このアプリは現在地を表示\"";
@@ -456,6 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MichikusaMemo/Preview Content\"";
+				DEVELOPMENT_TEAM = CHP337D75C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "このアプリは現在地を表示するために位置情報を使用します。\nこのアプリは現在地を表示するために位置情報を使用します。\nこのアプリは現在地を表示するために位置情報を使用します。\n\"このアプリは現在地を表示\"";
